@@ -12,6 +12,7 @@ const routes = [
         path: '/',
         component: Layout,
         redirect: '/home',
+        nesting:false,
         children:[
             {
                 path: "home",
@@ -29,6 +30,7 @@ const routes = [
         name: "auth",
         component: Layout,
         redirect:'/auth/a',
+        nesting:true,
         meta:{
             title: "权限管理",
             icon: "icon-quanxian"
@@ -37,7 +39,7 @@ const routes = [
             {
                 path: "a",
                 name: 'a',
-                component:()=> import('@/views/a/index'),
+                component:()=> import('@/views/auth/a/index'),
                 meta:{
                     title: "权限管理A"
                 }
@@ -45,7 +47,7 @@ const routes = [
             {
                 path: "b",
                 name: 'b',
-                component:()=> import('@/views/b/index'),
+                component:()=> import('@/views/auth/b/index'),
                 meta:{
                     title: "权限管理B"
                 }

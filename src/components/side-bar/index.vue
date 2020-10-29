@@ -10,11 +10,11 @@
     active-text-color="#409eff"
   >
         <template v-for="item in menu">
-        <el-menu-item :index="item.redirect" v-if="item.children.length==1">
+        <el-menu-item :index="item.redirect" v-if="!item.nesting">
           <i class="iconfont" :class="item.children[0].meta.icon"></i>
           <span slot="title">{{ item.children[0].meta.title }}</span>
         </el-menu-item>
-        <el-submenu :index="item.path"  v-if="item.children.length>1">
+        <el-submenu :index="item.path"  v-if="item.nesting">
           <template slot="title">
             <i class="iconfont" :class="item.meta.icon"></i>
             <span slot="title">{{ item.meta.title }}</span>
