@@ -7,9 +7,7 @@
           <top-menu></top-menu>
         </div>
         <div class="contentBto">
-          <transition name="fade">
             <router-view/>
-          </transition>
         </div>
       </div>
     </div>
@@ -30,14 +28,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/*vue过渡动画*/
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 1s
-}
-
-.fade-enter, .fade-leave-to {
-  opacity: 0
-}
 
 #box {
   height: 100%;

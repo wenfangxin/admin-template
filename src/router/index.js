@@ -12,55 +12,59 @@ const routes = [
         path: '/',
         component: Layout,
         redirect: '/home',
-        children: [
+        children:[
             {
-                path: "/home",
+                path: "home",
                 name: "home",
-                component: ()=>import('@/views/home/index.vue'),
+                component: ()=>import('@/views/home/index'),
                 meta: {
                     icon: "icon-shouye",
                     title: "首页"
                 }
-            },
-            {
-                path:'/auth',
-                redirect:'/auth/a',
-                meta: {
-                    icon: "icon-quanxian",
-                    title: "权限管理"
-                },
-                children:[
-                    {
-                        path: "a",
-                        name: "a",
-                        component: ()=>import('@/views/a/index.vue'),
-                        meta: {
-                            title: "a",
-                        }
-                    },
-                    {
-                        path: "b",
-                        name: "b",
-                        component: ()=>import('@/views/b/index.vue'),
-                        meta: {
-                            title: "b"
-                        }
-                    }
-                ]
             }
-
-
         ]
     },
+    {
+        path: "/auth",
+        name: "auth",
+        component: Layout,
+        redirect:'/auth/a',
+        meta:{
+            title: "权限管理",
+            icon: "icon-quanxian"
+        },
+        children:[
+            {
+                path: "a",
+                name: 'a',
+                component:()=> import('@/views/a/index'),
+                meta:{
+                    title: "权限管理A"
+                }
+            },
+            {
+                path: "b",
+                name: 'b',
+                component:()=> import('@/views/b/index'),
+                meta:{
+                    title: "权限管理B"
+                }
+            },
+        ]
+    },
+
     {
         path: '/login',
         name: 'login',
         component: () => import('@/views/login/index.vue'),
+        hidden: true,
     },
     {
         path: '*',
         name: 'NotFind',
         component: () => import('@/views/not-find/index.vue'),
+        hidden: true,
+
     }
 ]
 

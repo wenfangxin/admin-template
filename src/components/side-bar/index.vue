@@ -10,11 +10,11 @@
     active-text-color="#409eff"
   >
         <template v-for="item in menu">
-        <el-menu-item :index="item.path" v-if="!item.children">
-          <i class="iconfont" :class="item.meta.icon"></i>
-          <span slot="title">{{ item.meta.title }}</span>
+        <el-menu-item :index="item.redirect" v-if="item.children.length==1">
+          <i class="iconfont" :class="item.children[0].meta.icon"></i>
+          <span slot="title">{{ item.children[0].meta.title }}</span>
         </el-menu-item>
-        <el-submenu :index="item.path"  v-if="item.children">
+        <el-submenu :index="item.path"  v-if="item.children.length>1">
           <template slot="title">
             <i class="iconfont" :class="item.meta.icon"></i>
             <span slot="title">{{ item.meta.title }}</span>
@@ -34,7 +34,8 @@ export default {
     };
   },
   mounted() {
-    this.menu = this.$router.options.routes[0].children;
+    this.menu = this.$router.options.routes.filter(item=>!item.hidden)
+    console.log(this.menu)
   },
   methods: {
     clickItem(v) {
